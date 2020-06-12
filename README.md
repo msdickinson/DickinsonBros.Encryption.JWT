@@ -172,19 +172,19 @@ var certificateEncryptionService = new CertificateEncryptionService<RunnerCertif
 
 ```c#
 ...
-    //Add Logging Service
-    services.AddLoggingService();
+//Add Logging Service
+services.AddLoggingService();
 
-    //Add Redactor Service
-    services.AddRedactorService();
-    services.Configure<RedactorServiceOptions>(Configuration.GetSection(nameof(RedactorServiceOptions)));
+//Add Redactor Service
+services.AddRedactorService();
+services.Configure<RedactorServiceOptions>(Configuration.GetSection(nameof(RedactorServiceOptions)));
 
-    //Add DateTime Service
-    services.AddDateTimeService();
+//Add DateTime Service
+services.AddDateTimeService();
 
-    //Add JWTService Website
-    services.AddJWTService<WebsiteJWTServiceOptions>();
-    services.Configure<JWTServiceOptions<WebsiteJWTServiceOptions>>(Configuration.GetSection(nameof(WebsiteJWTServiceOptions)));
+//Add JWTService Website
+services.AddJWTService<WebsiteJWTServiceOptions>();
+services.Configure<JWTServiceOptions<WebsiteJWTServiceOptions>>(Configuration.GetSection(nameof(WebsiteJWTServiceOptions)));
 
 ...
 ```
