@@ -129,13 +129,12 @@ To verfiy certificate is installed (and where you can remove it)
     https://www.nuget.org/packages/DickinsonBros.Redactor
     https://www.nuget.org/packages/DickinsonBros.Encryption.Certificate
 
-<h3>Create class with base of CertificateEncryptionServiceOptions</h3>
+<h3>Create class with base of JWTServiceOptions</h3>
 
 ```c#
-public class RunnerCertificateEncryptionServiceOptions : CertificateEncryptionServiceOptions
-{
-
-};
+    public class WebsiteJWTServiceOptions : JWTServiceOptions
+    {
+    }
 ```
 <h3>Create Instance</h3>
 
@@ -169,7 +168,7 @@ var certificateEncryptionService = new CertificateEncryptionService<RunnerCertif
 }
 
  ```    
-<h4>Code (see DickinsonBros.Encryption.JWT.Runner - Startup.cs)</h4>
+<h4>Code</h4>
 
 ```c#
 {
