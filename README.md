@@ -132,9 +132,9 @@ To verfiy certificate is installed (and where you can remove it)
 <h3>Create class with base of JWTServiceOptions</h3>
 
 ```c#
-    public class WebsiteJWTServiceOptions : JWTServiceOptions
-    {
-    }
+public class WebsiteJWTServiceOptions : JWTServiceOptions
+{
+}
 ```
 <h3>Create Instance</h3>
 
@@ -171,7 +171,7 @@ var certificateEncryptionService = new CertificateEncryptionService<RunnerCertif
 <h4>Code</h4>
 
 ```c#
-{
+...
     //Add Logging Service
     services.AddLoggingService();
 
@@ -186,5 +186,5 @@ var certificateEncryptionService = new CertificateEncryptionService<RunnerCertif
     services.AddJWTService<WebsiteJWTServiceOptions>();
     services.Configure<JWTServiceOptions<WebsiteJWTServiceOptions>>(Configuration.GetSection(nameof(WebsiteJWTServiceOptions)));
 
-}
+...
 ```
