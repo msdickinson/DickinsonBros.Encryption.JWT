@@ -37,18 +37,15 @@ namespace DickinsonBros.Encryption.JWT.Runner
 
             //Add Redactor Service
             services.AddRedactorService();
-            services.Configure<RedactorServiceOptions>(Configuration.GetSection(nameof(RedactorServiceOptions)));
 
             //Add DateTime Service
             services.AddDateTimeService();
 
             //Add JWTService Website
             services.AddJWTService<WebsiteJWTServiceOptions>();
-            services.Configure<JWTServiceOptions<WebsiteJWTServiceOptions>>(Configuration.GetSection(nameof(WebsiteJWTServiceOptions)));
 
             //Add JWTService Administration WebSite
             services.AddJWTService<AdministrationWebSiteJWTServiceOptions>();
-            services.Configure<JWTServiceOptions<AdministrationWebSiteJWTServiceOptions>>(Configuration.GetSection(nameof(AdministrationWebSiteJWTServiceOptions)));
 
             //Add JWT Controller Authentication
             services.AddAuthentication(x =>

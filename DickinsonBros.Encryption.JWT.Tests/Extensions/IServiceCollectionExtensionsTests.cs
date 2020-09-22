@@ -1,4 +1,5 @@
 ﻿using DickinsonBros.Encryption.JWT.Abstractions;
+using DickinsonBros.Encryption.JWT.Configurators;
 using DickinsonBros.Encryption.JWT.Extensions;
 using DickinsonBros.Encryption.JWT.Models;
 using DickinsonBros.Encryption.JWT.RollerCoaster.Acccount.API.Infrastructure.JWT;
@@ -25,9 +26,13 @@ namespace DickinsonBros.Encryption.JWT.Tests.Extensions
 
             // Assert
 
-            Assert.IsTrue(serviceCollection.Any(serviceDefinition => serviceDefinition.ServiceType == typeof(IJWTService<>) &&
-                                           serviceDefinition.ImplementationType == typeof(JWTService<>) &&
-                                           serviceDefinition.Lifetime == ServiceLifetime.Singleton));
+            Assert.IsTrue(serviceCollection.Any(serviceDefinition => serviceDefinition.ServiceType == typeof(IJWTService<TestJWTServiceOptions>) &&
+                               serviceDefinition.ImplementationType == typeof(JWTService<TestJWTServiceOptions>) &&
+                               serviceDefinition.Lifetime == ServiceLifetime.Singleton));
+
+            Assert.IsTrue(serviceCollection.Any(serviceDefinition => serviceDefinition.ServiceType == typeof(JWTServiceOptions<JWTServiceOptions<TestJWTServiceOptions>>) &&
+                               serviceDefinition.ImplementationType == typeof(JWTServiceOptionsConfigurator<TestJWTServiceOptions>) &&
+                               serviceDefinition.Lifetime == ServiceLifetime.Singleton));
         }
     }
 }
