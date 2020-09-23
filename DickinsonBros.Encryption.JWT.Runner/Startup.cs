@@ -1,13 +1,9 @@
-using System;
-using System.Security.Cryptography.X509Certificates;
 using DickinsonBros.DateTime.Extensions;
 using DickinsonBros.Encryption.JWT.Extensions;
-using DickinsonBros.Encryption.JWT.Models;
-using DickinsonBros.Encryption.JWT.Runner.Models;
+using DickinsonBros.Encryption.JWT.Runner.Models.JWTService;
 using DickinsonBros.Encryption.JWT.Runner.Services;
 using DickinsonBros.Logger.Extensions;
 using DickinsonBros.Redactor.Extensions;
-using DickinsonBros.Redactor.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DickinsonBros.Encryption.JWT.Runner
 {
@@ -42,10 +40,10 @@ namespace DickinsonBros.Encryption.JWT.Runner
             services.AddDateTimeService();
 
             //Add JWTService Website
-            services.AddJWTService<WebsiteJWTServiceOptions>();
+            services.AddJWTService<GeneralWebsite>();
 
             //Add JWTService Administration WebSite
-            services.AddJWTService<AdministrationWebSiteJWTServiceOptions>();
+            services.AddJWTService<AdministrationWebSite>();
 
             //Add JWT Controller Authentication
             services.AddAuthentication(x =>

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DickinsonBros.Encryption.JWT.Abstractions;
 using DickinsonBros.Encryption.JWT.Runner.Models;
+using DickinsonBros.Encryption.JWT.Runner.Models.JWTService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,15 @@ namespace DickinsonBros.Encryption.JWT.Runner.Controllers
     public class JWTController : ControllerBase
     {
 
-        internal readonly IJWTService<WebsiteJWTServiceOptions> _websiteJWTService;
-        internal readonly IJWTService<AdministrationWebSiteJWTServiceOptions> _administrationJWTService;
+        internal readonly IJWTService<GeneralWebsite> _generalJWTService;
+        internal readonly IJWTService<AdministrationWebSite> _administrationJWTService;
         public JWTController
         (
-            IJWTService<WebsiteJWTServiceOptions> websiteJWTService,
-            IJWTService<AdministrationWebSiteJWTServiceOptions> administrationJWTService
+            IJWTService<GeneralWebsite> websiteJWTService,
+            IJWTService<AdministrationWebSite> administrationJWTService
         )
         {
-            _websiteJWTService = websiteJWTService;
+            _generalJWTService = websiteJWTService;
             _administrationJWTService = administrationJWTService;
         }
 
@@ -39,7 +40,7 @@ namespace DickinsonBros.Encryption.JWT.Runner.Controllers
                 new Claim(ClaimTypes.Role, "User")
             };
 
-            var generateTokensDescriptor = _websiteJWTService.GenerateTokens(claims);
+            var generateTokensDescriptor = _generalJWTService.GenerateTokens(claims);
 
             if(generateTokensDescriptor.Authorized == false)
             {
@@ -65,7 +66,7 @@ namespace DickinsonBros.Encryption.JWT.Runner.Controllers
         {
             await Task.CompletedTask;
 
-            var generateTokensDescriptor = _websiteJWTService.GenerateTokens(request.AccessToken, request.RefreshToken);
+            var generateTokensDescriptor = _generalJWTService.GenerateTokens(request.AccessToken, request.RefreshToken);
 
             if (generateTokensDescriptor.Authorized == false)
             {
